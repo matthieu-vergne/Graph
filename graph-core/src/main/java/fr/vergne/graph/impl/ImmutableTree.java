@@ -18,7 +18,7 @@ public class ImmutableTree<CVertex, CArc extends Arc<? extends CVertex>>
 	private final CVertex root;
 
 	public ImmutableTree(Collection<? extends CArc> arcs) {
-		super(extractVerticesFrom(arcs), arcs);
+		super(ImmutableTree.<CVertex, CArc> extractVerticesFrom(arcs), arcs);
 		this.arcs = Collections.unmodifiableSet(new HashSet<CArc>(arcs));
 		this.root = checkAndExtractRootFrom(arcs);
 	}
