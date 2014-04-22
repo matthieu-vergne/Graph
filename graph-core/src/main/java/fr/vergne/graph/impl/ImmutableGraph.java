@@ -6,18 +6,17 @@ import java.util.Collections;
 import fr.vergne.graph.Edge;
 import fr.vergne.graph.Graph;
 
-public class ImmutableGraph<VertexType, EdgeType extends Edge<? extends VertexType>>
-		extends ImmutableHypergraph<VertexType, EdgeType> implements
-		Graph<VertexType, EdgeType> {
+public class ImmutableGraph<CVertex, CEdge extends Edge<? extends CVertex>>
+		extends ImmutableHypergraph<CVertex, CEdge> implements
+		Graph<CVertex, CEdge> {
 
-	public ImmutableGraph(Collection<? extends VertexType> vertices,
-			Collection<? extends EdgeType> edges) {
+	public ImmutableGraph(Collection<? extends CVertex> vertices,
+			Collection<? extends CEdge> edges) {
 		super(vertices, edges);
 	}
 
 	public ImmutableGraph() {
-		this(Collections.<VertexType> emptyList(), Collections
-				.<EdgeType> emptyList());
+		this(Collections.<CVertex> emptyList(), Collections.<CEdge> emptyList());
 	}
 
 }

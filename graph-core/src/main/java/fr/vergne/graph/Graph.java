@@ -1,5 +1,6 @@
 package fr.vergne.graph;
 
-public interface Graph<VertexType, EdgeType extends Edge<? extends VertexType>> extends Hypergraph<VertexType, EdgeType> {
+public interface Graph<CVertex, CLink extends Edge<? extends CVertex>> extends
+		Hypergraph<CVertex, CLink> {
 
 }

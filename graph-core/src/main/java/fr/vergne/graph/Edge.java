@@ -1,8 +1,8 @@
 package fr.vergne.graph;
 
-public interface Edge<VertexType> extends Hyperedge<VertexType> {
+public interface Edge<CVertex> extends Hyperedge<CVertex> {
 
-	VertexType getVertex1();
+	CVertex getVertex1();
 
-	VertexType getVertex2();
+	CVertex getVertex2();
 }

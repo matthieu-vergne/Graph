@@ -1,8 +1,8 @@
 package fr.vergne.graph;
 
-public interface Arc<VertexType> extends Edge<VertexType> {
+public interface Arc<CVertex> extends Edge<CVertex> {
 
-	public VertexType getStart();
+	public CVertex getStart();
 
-	public VertexType getStop();
+	public CVertex getStop();
 }

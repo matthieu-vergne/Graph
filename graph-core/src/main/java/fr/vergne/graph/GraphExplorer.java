@@ -8,16 +8,17 @@ import java.util.Iterator;
  * 
  * @author Matthieu Vergne <matthieu.vergne@gmail.com>
  * 
- * @param <VertexType>
- * @param <EdgeType>
+ * @param <CVertex>
+ * @param <CHyperedge>
+ * @param <CHypergraph>
  */
-public interface GraphExplorer<VertexType, EdgeType extends Hyperedge<? extends VertexType>, GraphType extends Hypergraph<VertexType, EdgeType>> {
+public interface GraphExplorer<CVertex, CHyperedge extends Hyperedge<? extends CVertex>, CHypergraph extends Hypergraph<CVertex, CHyperedge>> {
 
 	/**
 	 * 
 	 * @return the graph explored
 	 */
-	public GraphType getGraph();
+	public CHypergraph getGraph();
 
 	/**
 	 * This method should return an {@link Iterator} which provides all the
@@ -25,7 +26,7 @@ public interface GraphExplorer<VertexType, EdgeType extends Hyperedge<? extends 
 	 * 
 	 * @return an {@link Iterator} over the vertices of the graph
 	 */
-	public Iterator<VertexType> verticesIterator();
+	public Iterator<CVertex> verticesIterator();
 
 	/**
 	 * This method should return an {@link Iterator} which provides all the
@@ -33,7 +34,7 @@ public interface GraphExplorer<VertexType, EdgeType extends Hyperedge<? extends 
 	 * 
 	 * @return an {@link Iterator} over the edges of the graph
 	 */
-	public Iterator<EdgeType> edgesIterator();
+	public Iterator<CHyperedge> edgesIterator();
 
 	/**
 	 * This method should return an {@link Iterator} which provides all the
@@ -43,5 +44,5 @@ public interface GraphExplorer<VertexType, EdgeType extends Hyperedge<? extends 
 	 *            the vertex to which recover the edges
 	 * @return an {@link Iterator} over the edges on the vertex
 	 */
-	public Iterator<EdgeType> edgesIterator(VertexType vertex);
+	public Iterator<CHyperedge> edgesIterator(CVertex vertex);
 }

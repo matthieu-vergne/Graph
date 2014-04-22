@@ -2,9 +2,9 @@ package fr.vergne.graph;
 
 import java.util.Collection;
 
-public interface Hypergraph<VertexType, EdgeType extends Hyperedge<? extends VertexType>> {
+public interface Hypergraph<CVertex, CHyperedge extends Hyperedge<? extends CVertex>> {
 
-	public Collection<VertexType> getVertices();
+	public Collection<CVertex> getVertices();
 
-	public Collection<EdgeType> getEdges();
+	public Collection<CHyperedge> getEdges();
 }

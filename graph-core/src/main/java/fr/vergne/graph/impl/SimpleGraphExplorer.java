@@ -8,34 +8,34 @@ import fr.vergne.graph.GraphExplorer;
 import fr.vergne.graph.Hyperedge;
 import fr.vergne.graph.Hypergraph;
 
-public class SimpleGraphExplorer<VertexType, EdgeType extends Hyperedge<? extends VertexType>, GraphType extends Hypergraph<VertexType, EdgeType>>
-		implements GraphExplorer<VertexType, EdgeType, GraphType> {
+public class SimpleGraphExplorer<CVertex, CHyperedge extends Hyperedge<? extends CVertex>, CHyperGraph extends Hypergraph<CVertex, CHyperedge>>
+		implements GraphExplorer<CVertex, CHyperedge, CHyperGraph> {
 
-	private final GraphType graph;
+	private final CHyperGraph graph;
 
-	public SimpleGraphExplorer(GraphType graph) {
+	public SimpleGraphExplorer(CHyperGraph graph) {
 		this.graph = graph;
 	}
 
 	@Override
-	public GraphType getGraph() {
+	public CHyperGraph getGraph() {
 		return graph;
 	}
 
 	@Override
-	public Iterator<VertexType> verticesIterator() {
+	public Iterator<CVertex> verticesIterator() {
 		return graph.getVertices().iterator();
 	}
 
 	@Override
-	public Iterator<EdgeType> edgesIterator() {
+	public Iterator<CHyperedge> edgesIterator() {
 		return graph.getEdges().iterator();
 	}
 
 	@Override
-	public Iterator<EdgeType> edgesIterator(VertexType vertex) {
-		Collection<EdgeType> edges = new LinkedList<EdgeType>();
-		for (EdgeType edge : graph.getEdges()) {
+	public Iterator<CHyperedge> edgesIterator(CVertex vertex) {
+		Collection<CHyperedge> edges = new LinkedList<CHyperedge>();
+		for (CHyperedge edge : graph.getEdges()) {
 			if (edge.getVertices().contains(vertex)) {
 				edges.add(edge);
 			} else {

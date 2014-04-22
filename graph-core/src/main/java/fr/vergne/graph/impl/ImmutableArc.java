@@ -2,18 +2,18 @@ package fr.vergne.graph.impl;
 
 import fr.vergne.graph.Arc;
 
-public class ImmutableArc<VertexType> extends ImmutableEdge<VertexType>
-		implements Arc<VertexType> {
+public class ImmutableArc<CVertex> extends ImmutableEdge<CVertex> implements
+		Arc<CVertex> {
 
-	public ImmutableArc(VertexType start, VertexType stop) {
+	public ImmutableArc(CVertex start, CVertex stop) {
 		super(start, stop);
 	}
 
-	public VertexType getStart() {
+	public CVertex getStart() {
 		return getVertex1();
 	}
 
-	public VertexType getStop() {
+	public CVertex getStop() {
 		return getVertex2();
 	}
 

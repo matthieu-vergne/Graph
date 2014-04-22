@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 import fr.vergne.graph.Edge;
 
-public class ImmutableEdge<VertexType> extends ImmutableHyperedge<VertexType>
-		implements Edge<VertexType> {
+public class ImmutableEdge<CVertex> extends ImmutableHyperedge<CVertex>
+		implements Edge<CVertex> {
 
-	private final VertexType vertex1;
-	private final VertexType vertex2;
+	private final CVertex vertex1;
+	private final CVertex vertex2;
 
 	@SuppressWarnings("unchecked")
-	public ImmutableEdge(VertexType vertex1, VertexType vertex2) {
-		super(Arrays.<VertexType> asList(vertex1, vertex2));
+	public ImmutableEdge(CVertex vertex1, CVertex vertex2) {
+		super(Arrays.<CVertex> asList(vertex1, vertex2));
 		this.vertex1 = vertex1;
 		this.vertex2 = vertex2;
 	}
@@ -23,7 +23,7 @@ public class ImmutableEdge<VertexType> extends ImmutableHyperedge<VertexType>
 	 * {@link #getVertex2()};
 	 */
 	@Override
-	public VertexType getVertex1() {
+	public CVertex getVertex1() {
 		return vertex1;
 	}
 
@@ -33,7 +33,7 @@ public class ImmutableEdge<VertexType> extends ImmutableHyperedge<VertexType>
 	 * {@link #getVertex1()};
 	 */
 	@Override
-	public VertexType getVertex2() {
+	public CVertex getVertex2() {
 		return vertex2;
 	}
 }

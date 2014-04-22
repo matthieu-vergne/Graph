@@ -6,16 +6,16 @@ import java.util.LinkedHashSet;
 
 import fr.vergne.graph.Hyperedge;
 
-public class ImmutableHyperedge<VertexType> implements Hyperedge<VertexType> {
+public class ImmutableHyperedge<CVertex> implements Hyperedge<CVertex> {
 
-	private final Collection<VertexType> vertices;
+	private final Collection<CVertex> vertices;
 
-	public ImmutableHyperedge(Collection<VertexType> vertices) {
-		this.vertices = Collections
-				.unmodifiableSet(new LinkedHashSet<VertexType>(vertices));
+	public ImmutableHyperedge(Collection<CVertex> vertices) {
+		this.vertices = Collections.unmodifiableSet(new LinkedHashSet<CVertex>(
+				vertices));
 	}
 
-	public Collection<VertexType> getVertices() {
+	public Collection<CVertex> getVertices() {
 		return vertices;
 	}
 

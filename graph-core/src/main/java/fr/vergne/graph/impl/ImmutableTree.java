@@ -11,47 +11,44 @@ import java.util.List;
 import fr.vergne.graph.Arc;
 import fr.vergne.graph.Tree;
 
-public class ImmutableTree<VertexType, ArcType extends Arc<? extends VertexType>>
-		extends ImmutableGraph<VertexType, ArcType> implements
-		Tree<VertexType, ArcType> {
+public class ImmutableTree<CVertex, CArc extends Arc<? extends CVertex>>
+		extends ImmutableGraph<CVertex, CArc> implements Tree<CVertex, CArc> {
 
-	private final Collection<? extends ArcType> arcs;
-	private final VertexType root;
+	private final Collection<? extends CArc> arcs;
+	private final CVertex root;
 
-	public ImmutableTree(Collection<? extends ArcType> arcs) {
+	public ImmutableTree(Collection<? extends CArc> arcs) {
 		super(extractVerticesFrom(arcs), arcs);
-		this.arcs = Collections.unmodifiableSet(new HashSet<ArcType>(arcs));
+		this.arcs = Collections.unmodifiableSet(new HashSet<CArc>(arcs));
 		this.root = checkAndExtractRootFrom(arcs);
 	}
 
 	@SuppressWarnings("unchecked")
-	public ImmutableTree(VertexType singleNode) {
-		super(Arrays.asList(singleNode), Collections.<ArcType> emptyList());
+	public ImmutableTree(CVertex singleNode) {
+		super(Arrays.asList(singleNode), Collections.<CArc> emptyList());
 		this.arcs = Collections.emptySet();
 		this.root = singleNode;
 	}
 
-	private static <VertexType, ArcType extends Arc<? extends VertexType>> Collection<VertexType> extractVerticesFrom(
-			Collection<? extends ArcType> arcs) {
-		Collection<VertexType> vertices = new HashSet<VertexType>();
-		for (Arc<? extends VertexType> arc : arcs) {
+	private static <CVertex, CArc extends Arc<? extends CVertex>> Collection<CVertex> extractVerticesFrom(
+			Collection<? extends CArc> arcs) {
+		Collection<CVertex> vertices = new HashSet<CVertex>();
+		for (Arc<? extends CVertex> arc : arcs) {
 			vertices.addAll(arc.getVertices());
 		}
 		return vertices;
 	}
 
-	private VertexType checkAndExtractRootFrom(
-			Collection<? extends Arc<? extends VertexType>> arcs) {
-		List<Arc<? extends VertexType>> todo = new ArrayList<Arc<? extends VertexType>>(
-				arcs);
-		Collection<VertexType> alreadyBrowsed = new HashSet<VertexType>();
-		Collection<VertexType> roots = new HashSet<VertexType>();
+	private CVertex checkAndExtractRootFrom(Collection<? extends CArc> arcs) {
+		List<CArc> todo = new ArrayList<CArc>(arcs);
+		Collection<CVertex> alreadyBrowsed = new HashSet<CVertex>();
+		Collection<CVertex> roots = new HashSet<CVertex>();
 		boolean hasBeenExtended;
 		do {
 			hasBeenExtended = false;
-			Iterator<Arc<? extends VertexType>> iterator = todo.iterator();
+			Iterator<CArc> iterator = todo.iterator();
 			while (iterator.hasNext()) {
-				Arc<? extends VertexType> arc = iterator.next();
+				Arc<? extends CVertex> arc = iterator.next();
 				if (alreadyBrowsed.containsAll(arc.getVertices())) {
 					throw new IllegalArgumentException("The arc " + arc
 							+ " appears to close a cycle in " + arcs);
@@ -91,23 +88,23 @@ public class ImmutableTree<VertexType, ArcType extends Arc<? extends VertexType>
 		}
 	}
 
-	public VertexType getRoot() {
+	public CVertex getRoot() {
 		return root;
 	}
 
-	public ChildrenIterator<VertexType> getChildrenOf(VertexType vertex) {
-		return new DefaultChildrenIterator<VertexType>(vertex, arcs);
+	public ChildrenIterator<CVertex> getChildrenOf(CVertex vertex) {
+		return new DefaultChildrenIterator<CVertex>(vertex, arcs);
 	}
 
-	public static class DefaultChildrenIterator<VertexType> implements
-			ChildrenIterator<VertexType> {
+	public static class DefaultChildrenIterator<CVertex> implements
+			ChildrenIterator<CVertex> {
 
-		private final Iterator<? extends Arc<? extends VertexType>> arcIterator;
-		private final VertexType parent;
-		private VertexType nextChild;
+		private final Iterator<? extends Arc<? extends CVertex>> arcIterator;
+		private final CVertex parent;
+		private CVertex nextChild;
 
-		public DefaultChildrenIterator(VertexType parent,
-				Collection<? extends Arc<? extends VertexType>> arcs) {
+		public DefaultChildrenIterator(CVertex parent,
+				Collection<? extends Arc<? extends CVertex>> arcs) {
 			this.parent = parent;
 			this.arcIterator = arcs.iterator();
 			lookForNextChild();
@@ -116,7 +113,7 @@ public class ImmutableTree<VertexType, ArcType extends Arc<? extends VertexType>
 		private void lookForNextChild() {
 			nextChild = null;
 			while (nextChild == null && arcIterator.hasNext()) {
-				Arc<? extends VertexType> arc = arcIterator.next();
+				Arc<? extends CVertex> arc = arcIterator.next();
 				if (arc.getStart().equals(parent)) {
 					nextChild = arc.getStop();
 				} else {
@@ -126,7 +123,7 @@ public class ImmutableTree<VertexType, ArcType extends Arc<? extends VertexType>
 		}
 
 		@Override
-		public Iterator<VertexType> iterator() {
+		public Iterator<CVertex> iterator() {
 			return this;
 		}
 
@@ -136,8 +133,8 @@ public class ImmutableTree<VertexType, ArcType extends Arc<? extends VertexType>
 		}
 
 		@Override
-		public VertexType next() {
-			VertexType child = nextChild;
+		public CVertex next() {
+			CVertex child = nextChild;
 			lookForNextChild();
 			return child;
 		}

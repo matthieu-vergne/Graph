@@ -7,25 +7,25 @@ import java.util.LinkedHashSet;
 import fr.vergne.graph.Hyperedge;
 import fr.vergne.graph.Hypergraph;
 
-public class ImmutableHypergraph<VertexType, EdgeType extends Hyperedge<? extends VertexType>>
-		implements Hypergraph<VertexType, EdgeType> {
+public class ImmutableHypergraph<CVertex, CHyperedge extends Hyperedge<? extends CVertex>>
+		implements Hypergraph<CVertex, CHyperedge> {
 
-	private final Collection<VertexType> vertices;
-	private final Collection<EdgeType> edges;
+	private final Collection<CVertex> vertices;
+	private final Collection<CHyperedge> edges;
 
-	public ImmutableHypergraph(Collection<? extends VertexType> vertices,
-			Collection<? extends EdgeType> edges) {
-		this.vertices = Collections
-				.unmodifiableSet(new LinkedHashSet<VertexType>(vertices));
-		this.edges = Collections.unmodifiableSet(new LinkedHashSet<EdgeType>(
+	public ImmutableHypergraph(Collection<? extends CVertex> vertices,
+			Collection<? extends CHyperedge> edges) {
+		this.vertices = Collections.unmodifiableSet(new LinkedHashSet<CVertex>(
+				vertices));
+		this.edges = Collections.unmodifiableSet(new LinkedHashSet<CHyperedge>(
 				edges));
 	}
 
-	public Collection<VertexType> getVertices() {
+	public Collection<CVertex> getVertices() {
 		return vertices;
 	}
 
-	public Collection<EdgeType> getEdges() {
+	public Collection<CHyperedge> getEdges() {
 		return edges;
 	}
 }

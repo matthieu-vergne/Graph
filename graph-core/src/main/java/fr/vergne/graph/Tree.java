@@ -9,13 +9,15 @@ import java.util.Iterator;
  * 
  * @author Matthieu Vergne <matthieu.vergne@gmail.com>
  * 
- * @param <VertexType>
+ * @param <CNode>
+ * @param <CLink>
  */
-public interface Tree<VertexType, ArcType extends Arc<? extends VertexType>> extends Graph<VertexType, ArcType> {
+public interface Tree<CNode, CLink extends Arc<? extends CNode>> extends
+		Graph<CNode, CLink> {
 
-	public VertexType getRoot();
+	public CNode getRoot();
 
-	public ChildrenIterator<VertexType> getChildrenOf(VertexType vertex);
+	public ChildrenIterator<CNode> getChildrenOf(CNode vertex);
 
 	public static interface ChildrenIterator<VertexType> extends
 			Iterator<VertexType>, Iterable<VertexType> {
