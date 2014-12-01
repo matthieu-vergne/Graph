@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.matthieu-vergne</groupId>
 	<artifactId>graph</artifactId>
-	<version>1.1</version>
+	<version>1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Graph Support</name>
 	<description>Generic purpose graph interfaces and implementations.</description>
